@@ -79,7 +79,7 @@ export default function ProfilePage() {
       return;
     }
     try {
-      const res = await fetch(`/api/user/${userId}/delete`, {
+      const res = await fetch(`/api/user/${userId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: deletePassword }),
@@ -130,9 +130,9 @@ export default function ProfilePage() {
           {videos.length > 0 ? (
             <div className="grid gap-8 mt-6 sm:grid-cols-2 lg:grid-cols-3">
               {videos.map((video) => (
-                <div key={video._id} className="bg-gray-100 p-4 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <div key={video?._id} className="bg-gray-100 p-4 rounded-xl shadow-lg hover:shadow-2xl transition-all">
                   <video
-                    src={video.videoUrl}
+                    src={video?.videoUrl}
                     className="w-full h-48 object-cover rounded-lg mb-4"
                     controls
                   />

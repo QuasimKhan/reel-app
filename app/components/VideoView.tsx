@@ -34,7 +34,6 @@ const VideoView = ({ videos }: VideoViewProps) => {
   const swipeHandlers = useSwipeable({
     onSwipedUp: handleSwipeUp,
     onSwipedDown: handleSwipeDown,
-    preventDefaultTouchmoveEvent: true,
     trackMouse: true,
     delta: 50, // Adjust this to control swipe sensitivity
   });
