@@ -4,16 +4,23 @@ import User, { IUser } from "@/models/User";
 import bcrypt from "bcryptjs";
 
 
+export interface Params{
+  params: {
+    userId: string;
+  }
+}
+
 
 
 
 export async function GET(
   req: NextRequest,
-  context: { params: { userId: string } },
+  context: { params: Params },
 ): Promise<NextResponse<IUser | { error: string }>> {
   try {
     await connectToDatabase();
-    const user = await User.findById<IUser>(context.params.userId);
+    const  userId  = context.params;
+    const user = await User.findById<IUser>(userId);
     if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
     return NextResponse.json(user);
